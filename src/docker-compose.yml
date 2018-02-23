@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+
+  db:
+    image: postgres:${POSTGRES_VERSION:-10.0}
+    restart: always
+    env_file:
+      - etc/postgres.env
+    volumes:
+      - db-data:/var/lib/postgresql/data/pgdata
+    ports:
+      - "${POSTGRES_LOCAL_PORT:-5432}:5432"
+
+volumes:
+
+  db-data:
